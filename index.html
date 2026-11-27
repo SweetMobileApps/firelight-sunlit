@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Firelight · Sunlit</title>
+<link rel="stylesheet" href="garden.css">
+</head>
+<body>
+<header>
+<button id="connect" type="button">Choose chat folder</button>
+<span id="status" role="status"></span>
+<button id="disconnect" type="button" hidden>Disconnect</button>
+<button id="fullscreen" type="button">Enter fullscreen</button>
+</header>
+<dialog id="setup" aria-labelledby="setup-title">
+<form method="dialog"><button type="submit" class="close" aria-label="Close setup">×</button></form>
+<h1 id="setup-title">Connect your chats</h1>
+<p>Choose where your chats are saved. Firelight reads their activity on this device to bring your fairies to life.</p>
+<fieldset class="providers"><legend>Chat source</legend>
+<label><input type="radio" name="provider" value="codex" checked> Codex</label>
+<label><input type="radio" name="provider" value="claude"> Claude Code</label>
+<label><input type="radio" name="provider" value="both"> Both</label>
+</fieldset>
+<div id="folder-details">
+<label for="platform">Instructions for</label>
+<select id="platform"><option value="mac">macOS</option><option value="windows">Windows</option><option value="linux">Linux</option></select>
+<label id="path-label" for="folder-path">Default Codex folder</label>
+<div class="path-row"><input id="folder-path" readonly spellcheck="false"><button id="copy" type="button">Copy</button></div>
+<ol id="steps"></ol>
+<p class="hint" id="folder-hint">If you set a custom CODEX_HOME, choose that folder instead.</p>
+</div>
+<button id="browse" type="button">Open folder picker</button>
+<span id="copy-status" role="status"></span>
+</dialog>
+<main><canvas id="unity-canvas" tabindex="0" aria-label="Live Sunlit garden"></canvas><div id="loading" role="status">Loading garden…</div></main>
+<script type="module" src="garden.js"></script>
+<script src="Build/SunlitWeb.loader.js"></script>
+<script>
+createUnityInstance(document.getElementById("unity-canvas"), {
+  dataUrl: "Build/SunlitWeb.data", frameworkUrl: "Build/SunlitWeb.framework.js",
+  codeUrl: "Build/SunlitWeb.wasm", streamingAssetsUrl: "StreamingAssets",
+  companyName: "Firelight", productName: "Sunlit Web", productVersion: "1.0",
+  autoSyncPersistentDataPath: true,
+  devicePixelRatio: Math.min(window.devicePixelRatio, 2)
+}, p => document.getElementById("loading").textContent = "Loading garden… " + Math.round(100*p) + "%")
+.then(() => document.getElementById("loading").hidden = true)
+.catch(e => { document.getElementById("loading").textContent = "The garden could not start. Reload in desktop Chrome with WebGL enabled."; console.error(e); });
+</script>
+</body></html>

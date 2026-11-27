@@ -1,0 +1,39 @@
+:root { color-scheme: dark; font: 14px/1.4 system-ui, sans-serif; color: #f6f0df; background: #182622; }
+* { box-sizing: border-box; }
+body { margin: 0; display: flex; flex-direction: column; height: 100dvh; }
+header { display: flex; align-items: center; flex-wrap: wrap; gap: .45rem .9rem; padding: .5rem 1rem; background: #1b2923; }
+:root:fullscreen > body > header { display: none; }
+button, select { font: inherit; border: 1px solid #697666; border-radius: .4rem; background: #2a3930; color: inherit; padding: .32rem .55rem; max-width: 62vw; }
+button { cursor: pointer; }
+button:focus-visible, select:focus-visible { outline: 2px solid #e4ce88; }
+#status { color: #dcdfcf; }
+#status:empty { display: none; }
+#fullscreen { margin-left: auto; }
+main { position: relative; flex: 1; min-height: 0; }
+canvas { display: block; width: 100%; height: 100%; }
+#loading { position: absolute; inset: 45% auto auto 50%; transform: translateX(-50%); text-align: center; }
+dialog { width: min(28rem, 92vw); padding: 1.5rem; color: #f6f0df; background: #25342b; border: 1px solid #71806e; border-radius: .8rem; box-shadow: 0 1rem 4rem #0006; }
+dialog::backdrop { background: #101b16aa; }
+dialog h1 { font: 600 1.4rem/1.2 Georgia, serif; margin: 0 2rem .8rem 0; }
+dialog p { margin: .5rem 0 1rem; }
+dialog label { display: block; margin: .8rem 0 .25rem; }
+dialog .close { float: right; border: 0; padding: 0 .4rem; font-size: 1.3rem; background: transparent; }
+.path-row { display: flex; gap: .4rem; }
+.path-row input { flex: 1; min-width: 0; font: 1rem monospace; border: 1px solid #72806f; background: #19271f; color: inherit; padding: .55rem; border-radius: .35rem; }
+dialog ol { padding-left: 1.3rem; } dialog li { margin: .4rem 0; }
+.hint, #copy-status { color: #c9d0bf; font-size: .9rem; }
+#browse { background: #e4c98c; color: #19261e; font-weight: 600; }
+#copy-status { margin-left: .5rem; }
+
+.providers { display: flex; gap: .5rem; border: 0; padding: 0; margin: 0; }
+.providers legend { padding: 0; }
+.providers label { flex: 1; margin: .3rem 0; padding: .55rem; border: 1px solid #697666; border-radius: .4rem; cursor: pointer; }
+.providers label:has(:checked) { border-color: #e4c98c; background: #354237; }
+.providers input { accent-color: #e4c98c; }
+
+.share-garden { width: min(40rem, 94vw); }
+.share-garden img { width: 100%; border-radius: .4rem; display: block; }
+.share-stats { white-space: pre-line; user-select: text; }
+.share-actions { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+.share-actions a { color: inherit; border: 1px solid #697666; border-radius: .4rem; padding: .32rem .55rem; text-decoration: none; }
+.share-garden p[role=status]:empty { display: none; }
