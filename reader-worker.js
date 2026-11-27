@@ -21,9 +21,8 @@ self.onmessage = async ({data:{root, pinned, provider}}) => {
                 refreshAt = Date.now() + 15000;
             }
             const publish = () => {
-                const chats = entries.map(({id, title, updated}, index) => ({
-                    id, title:readers.get(id)?.reader.turn.title || title, activity:readers.get(id)?.activity || "Last state unknown",
-                    visibleByDefault:index === 0 || id === pinned || updated >= Date.now() - day
+                const chats = entries.map(({id, title}) => ({
+                    id, title:readers.get(id)?.reader.turn.title || title, activity:readers.get(id)?.activity || "Last state unknown"
                 }));
                 const json = JSON.stringify(chats);
                 if (json !== previous) { previous = json; postMessage({chats}); }
